@@ -1,0 +1,866 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/Flolagale/mailin">mailin (v3.0.4)</a>
+</h1>
+<h4>Artisanal inbound emails for every web app</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mailin">module mailin</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">mailin.</span>_eventsCount</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>_events</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>_smtp</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>configuration</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>domain</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>logger</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.</span>mailUtilities</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mailin.logger">module mailin.logger</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mailin.logger.</span>emitErrs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mailin.logger.</span>exitOnError</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mailin.logger.</span>padLevels</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mailin.logger.</span>stripColors</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger._error">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>_error
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.debug">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>debug
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.error">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>error
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.info">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>info
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.setLevel">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>setLevel
+            <span class="apidocSignatureSpan">(level)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.setLogFile">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>setLogFile
+            <span class="apidocSignatureSpan">(logFilePath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.silly">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>silly
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.verbose">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>verbose
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.logger.warn">
+            function <span class="apidocSignatureSpan">mailin.logger.</span>warn
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">mailin.logger.</span>_eventsCount</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>_events</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>_hnames</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>_names</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>domain</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>exceptionHandlers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>filters</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>levels</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>profilers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>rewriters</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mailin.logger.</span>transports</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">mailin.logger.</span>level</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mailin.mailUtilities">module mailin.mailUtilities</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.computeSpamScore">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>computeSpamScore
+            <span class="apidocSignatureSpan">(rawEmail, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.computeSpamScoreAsync">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>computeSpamScoreAsync
+            <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.validateDkim">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateDkim
+            <span class="apidocSignatureSpan">(rawEmail, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.validateDkimAsync">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateDkimAsync
+            <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.validateSpf">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateSpf
+            <span class="apidocSignatureSpan">(ip, address, host, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mailin.mailUtilities.validateSpfAsync">
+            function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateSpfAsync
+            <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mailin" id="apidoc.module.mailin">module mailin</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mailin.logger" id="apidoc.module.mailin.logger">module mailin.logger</a></h1>
+
+
+
+
+
+
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger._error" id="apidoc.element.mailin.logger._error">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>_error
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_error = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (logger.transports.file) logger.transports.file.level = level;
+}
+};
+
+logger._error = logger.error;
+logger.error = function (err) {
+if (err.stack) {
+    this.<span class="apidocCodeKeywordSpan">_error</span>(err.stack);
+} else if (!_.isString(err)) {
+    this._error(util.inspect(err, {
+        depth: 5
+    }));
+} else {
+    this._error.apply(this, arguments);
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.debug" id="apidoc.element.mailin.logger.debug">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>debug
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">debug = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.error" id="apidoc.element.mailin.logger.error">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>error
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">error = function (err) {
+    if (err.stack) {
+        this._error(err.stack);
+    } else if (!_.isString(err)) {
+        this._error(util.inspect(err, {
+            depth: 5
+        }));
+    } else {
+        this._error.apply(this, arguments);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+};
+
+/* Parameter level is one of 'silly', 'verbose', 'debug', 'info', 'warn',
+ * 'error'. */
+logger.setLevel = function (level) {
+if (['silly', 'verbose', 'debug', 'info', 'warn', 'error'].indexOf(level
+) === -1) {
+    logger.<span class="apidocCodeKeywordSpan">error</span>('Unable to set logging level to unknown level "' + level
+ + '".');
+} else {
+    /* Verbose and debug have not exactly the same semantic in Mailin and
+     * Winston, so handle that. */
+    if (logger.transports.console.level === 'verbose' &amp;&amp;
+        level === 'debug') {
+        return;
+    }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.info" id="apidoc.element.mailin.logger.info">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>info
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">info = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.setLevel" id="apidoc.element.mailin.logger.setLevel">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>setLevel
+        <span class="apidocSignatureSpan">(level)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setLevel = function (level) {
+    if (['silly', 'verbose', 'debug', 'info', 'warn', 'error'].indexOf(level) === -1) {
+        logger.error('Unable to set logging level to unknown level "' + level + '".');
+    } else {
+<span class="apidocCodeCommentSpan">        /* Verbose and debug have not exactly the same semantic in Mailin and
+         * Winston, so handle that. */
+</span>        if (logger.transports.console.level === 'verbose' &amp;&amp;
+            level === 'debug') {
+            return;
+        }
+
+        logger.transports.console.level = level;
+
+        if (logger.transports.file) logger.transports.file.level = level;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.setLogFile" id="apidoc.element.mailin.logger.setLogFile">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>setLogFile
+        <span class="apidocSignatureSpan">(logFilePath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setLogFile = function (logFilePath) {
+    this.add(winston.transports.File, {
+        filename: logFilePath,
+        json: false,
+        maxsize: 20000000,
+        timestamp: true
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.silly" id="apidoc.element.mailin.logger.silly">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>silly
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">silly = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.verbose" id="apidoc.element.mailin.logger.verbose">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>verbose
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">verbose = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return callback(null, false);
+}
+
+var verifyDkimPath = path.join(__dirname, '../python/verifydkim.py');
+var verifyDkim = child_process.spawn('python', [verifyDkimPath]);
+
+verifyDkim.stdout.on('data', function (data) {
+    logger.<span class="apidocCodeKeywordSpan">verbose</span>(data.toString());
+});
+
+verifyDkim.on('close', function (code) {
+    logger.verbose('closed with return code ' + code);
+    /* Convert return code to appropriate boolean. */
+    return callback(null, !!!code);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.logger.warn" id="apidoc.element.mailin.logger.warn">
+        function <span class="apidocSignatureSpan">mailin.logger.</span>warn
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">warn = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var path = require('path');
+var Spamc = require('spamc');
+var spamc = new Spamc();
+
+/* Verify Python availability. */
+var isPythonAvailable = shell.which('python');
+if (!isPythonAvailable) {
+logger.<span class="apidocCodeKeywordSpan">warn</span>('Python is not available. Dkim and spf checking is disabled.');
+}
+
+/* Verify spamc/spamassassin availability. */
+var isSpamcAvailable = true;
+if (!shell.which('spamassassin') || !shell.which('spamc')) {
+logger.warn('Either spamassassin or spamc are not available. Spam score computation is disabled.');
+isSpamcAvailable = false;
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mailin.mailUtilities" id="apidoc.module.mailin.mailUtilities">module mailin.mailUtilities</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.computeSpamScore" id="apidoc.element.mailin.mailUtilities.computeSpamScore">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>computeSpamScore
+        <span class="apidocSignatureSpan">(rawEmail, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">computeSpamScore = function (rawEmail, callback) {
+    if (!isSpamcAvailable) {
+        return callback(null, 0.0);
+    }
+
+    spamc.report(rawEmail, function (err, result) {
+        logger.verbose(result);
+        if (err) logger.error(err);
+        if (err) return callback(new Error('Unable to compute spam score.'));
+        callback(null, result.spamScore);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.computeSpamScoreAsync" id="apidoc.element.mailin.mailUtilities.computeSpamScoreAsync">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>computeSpamScoreAsync
+        <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">computeSpamScoreAsync = function (_arg0, _arg1, _arg2) {
+    'use strict';
+    var len = arguments.length;
+    var promise = new Promise(INTERNAL);
+    promise._captureStackTrace();
+    var nodeback = nodebackForPromise(promise);
+    var ret;
+    var callback = tryCatch(this != null ? this['computeSpamScore'] : fn);
+    switch(len) {
+        case 1:ret = callback.call(this, _arg0, nodeback); break;
+case 0:ret = callback.call(this, nodeback); break;
+case 2:ret = callback.call(this, _arg0, _arg1, nodeback); break;
+case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
+
+default:
+    var args = new Array(len + 1);
+    var i = 0;
+    for (var i = 0; i &lt; len; ++i) {
+       args[i] = arguments[i];
+    }
+    args[i] = nodeback;
+    ret = callback.apply(this, args);
+
+    break;
+
+    }
+    if (ret === errorObj) {
+        promise._rejectCallback(maybeWrapAsError(ret.e), true, true);
+    }
+    return promise;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.validateDkim" id="apidoc.element.mailin.mailUtilities.validateDkim">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateDkim
+        <span class="apidocSignatureSpan">(rawEmail, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateDkim = function (rawEmail, callback) {
+    if (!isPythonAvailable) {
+        return callback(null, false);
+    }
+
+    var verifyDkimPath = path.join(__dirname, '../python/verifydkim.py');
+    var verifyDkim = child_process.spawn('python', [verifyDkimPath]);
+
+    verifyDkim.stdout.on('data', function (data) {
+        logger.verbose(data.toString());
+    });
+
+    verifyDkim.on('close', function (code) {
+        logger.verbose('closed with return code ' + code);
+<span class="apidocCodeCommentSpan">        /* Convert return code to appropriate boolean. */
+</span>        return callback(null, !!!code);
+    });
+
+    verifyDkim.stdin.write(rawEmail);
+    verifyDkim.stdin.end();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.validateDkimAsync" id="apidoc.element.mailin.mailUtilities.validateDkimAsync">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateDkimAsync
+        <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateDkimAsync = function (_arg0, _arg1, _arg2) {
+    'use strict';
+    var len = arguments.length;
+    var promise = new Promise(INTERNAL);
+    promise._captureStackTrace();
+    var nodeback = nodebackForPromise(promise);
+    var ret;
+    var callback = tryCatch(this != null ? this['validateDkim'] : fn);
+    switch(len) {
+        case 1:ret = callback.call(this, _arg0, nodeback); break;
+case 0:ret = callback.call(this, nodeback); break;
+case 2:ret = callback.call(this, _arg0, _arg1, nodeback); break;
+case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
+
+default:
+    var args = new Array(len + 1);
+    var i = 0;
+    for (var i = 0; i &lt; len; ++i) {
+       args[i] = arguments[i];
+    }
+    args[i] = nodeback;
+    ret = callback.apply(this, args);
+
+    break;
+
+    }
+    if (ret === errorObj) {
+        promise._rejectCallback(maybeWrapAsError(ret.e), true, true);
+    }
+    return promise;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.validateSpf" id="apidoc.element.mailin.mailUtilities.validateSpf">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateSpf
+        <span class="apidocSignatureSpan">(ip, address, host, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateSpf = function (ip, address, host, callback) {
+    if (!isPythonAvailable) {
+        return callback(null, false);
+    }
+
+    var verifySpfPath = path.join(__dirname, '../python/verifyspf.py');
+    var cmd = 'python ' + verifySpfPath + ' ' + ip + ' ' + address + ' ' + host;
+    child_process.exec(cmd, function (err, stdout) {
+        logger.verbose(stdout);
+        var code = 0;
+        if (err) {
+            code = err.code;
+        }
+
+        logger.verbose('closed with return code ' + code);
+
+<span class="apidocCodeCommentSpan">        /* Convert return code to appropriate boolean. */
+</span>        return callback(null, !!!code);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mailin.mailUtilities.validateSpfAsync" id="apidoc.element.mailin.mailUtilities.validateSpfAsync">
+        function <span class="apidocSignatureSpan">mailin.mailUtilities.</span>validateSpfAsync
+        <span class="apidocSignatureSpan">(_arg0, _arg1, _arg2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateSpfAsync = function (_arg0, _arg1, _arg2) {
+    'use strict';
+    var len = arguments.length;
+    var promise = new Promise(INTERNAL);
+    promise._captureStackTrace();
+    var nodeback = nodebackForPromise(promise);
+    var ret;
+    var callback = tryCatch(this != null ? this['validateSpf'] : fn);
+    switch(len) {
+        case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
+case 2:ret = callback.call(this, _arg0, _arg1, nodeback); break;
+case 1:ret = callback.call(this, _arg0, nodeback); break;
+case 0:ret = callback.call(this, nodeback); break;
+
+default:
+    var args = new Array(len + 1);
+    var i = 0;
+    for (var i = 0; i &lt; len; ++i) {
+       args[i] = arguments[i];
+    }
+    args[i] = nodeback;
+    ret = callback.apply(this, args);
+
+    break;
+
+    }
+    if (ret === errorObj) {
+        promise._rejectCallback(maybeWrapAsError(ret.e), true, true);
+    }
+    return promise;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
