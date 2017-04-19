@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/Flolagale/mailin"
-
-    >mailin (v3.0.4)</a>
+    <a href="https://github.com/Flolagale/mailin">mailin (v3.0.4)</a>
 </h1>
 <h4>Artisanal inbound emails for every web app</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.mailin">module mailin</a><ol>
 
@@ -620,8 +613,8 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function onAuth(auth, session, streamCallback) {
-    if (_this.emit(&#x27;authorizeUser&#x27;, session, auth.username, auth.password, streamCallback)) {
-        streamCallback(new Error(&#x27;Unauthorized user&#x27;));
+    if (_this.emit('authorizeUser', session, auth.username, auth.password, streamCallback)) {
+        streamCallback(new Error('Unauthorized user'));
     }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -643,29 +636,29 @@
     var mailPath = path.join(configuration.tmp, connection.id);
     connection.mailPath = mailPath;
 
-    _this.emit(&#x27;startData&#x27;, connection);
-    logger.verbose(&#x27;Connection id &#x27; + connection.id);
-    logger.info(connection.id + &#x27; Receiving message from &#x27; + connection.envelope.mailFrom.address);
+    _this.emit('startData', connection);
+    logger.verbose('Connection id ' + connection.id);
+    logger.info(connection.id + ' Receiving message from ' + connection.envelope.mailFrom.address);
 
-    _this.emit(&#x27;startMessage&#x27;, connection);
+    _this.emit('startMessage', connection);
 
     stream.pipe(fs.createWriteStream(mailPath));
 
-    stream.on(&#x27;data&#x27;, function (chunk) {
-        _this.emit(&#x27;data&#x27;, connection, chunk);
+    stream.on('data', function (chunk) {
+        _this.emit('data', connection, chunk);
     });
 
-    stream.on(&#x27;end&#x27;, function () {
+    stream.on('end', function () {
         dataReady(connection);
         callback();
     });
 
-    stream.on(&#x27;close&#x27;, function () {
-        _this.emit(&#x27;close&#x27;, connection);
+    stream.on('close', function () {
+        _this.emit('close', connection);
     });
 
-    stream.on(&#x27;error&#x27;, function (error) {
-        _this.emit(&#x27;error&#x27;, connection, error);
+    stream.on('error', function (error) {
+        _this.emit('error', connection, error);
     });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -681,11 +674,11 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function onMailFrom(address, session, streamCallback) {
-    _this.emit(&#x27;validateSender&#x27;, session, address.address, streamCallback);
+    _this.emit('validateSender', session, address.address, streamCallback);
     var ack = function (err) {
         streamCallback(err);
     };
-    validateAddress(&#x27;sender&#x27;, address.address, session.envelope)
+    validateAddress('sender', address.address, session.envelope)
         .then(ack)
         .catch(ack);
 }</pre></li>
@@ -705,8 +698,8 @@
     var ack = function (err) {
         streamCallback(err);
     };
-    _this.emit(&#x27;validateRecipient&#x27;, session, address.address, callback);
-    validateAddress(&#x27;recipient&#x27;, address.address, session.envelope)
+    _this.emit('validateRecipient', session, address.address, callback);
+    validateAddress('recipient', address.address, session.envelope)
         .then(ack)
         .catch(ack);
 }</pre></li>
@@ -744,14 +737,14 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">close = function () {
-    logger.info(&#x27;Closing smtp server&#x27;);
-    _this.emit(&#x27;close&#x27;, _session);
+    logger.info('Closing smtp server');
+    _this.emit('close', _session);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 Mailin.prototype.stop = function (callback) {
 callback = callback || function () {};
-logger.info(&#x27;Stopping mailin.&#x27;);
+logger.info('Stopping mailin.');
 
 /* FIXME A bug in the RAI module prevents the callback to be called, so
  * call end and call the callback directly. */
@@ -760,9 +753,9 @@ callback();
 };
 
 Mailin.prototype._convertTextToHtml = function (text) {
-/* Replace newlines by &#x3c;br&#x3e;. */
-text = text.replace(/(\n\r)|(\n)/g, &#x27;&#x3c;br&#x3e;&#x27;);
-/* Remove &#x3c;br&#x3e; at the begining. */
+/* Replace newlines by &lt;br&gt;. */
+text = text.replace(/(\n\r)|(\n)/g, '&lt;br&gt;');
+/* Remove &lt;br&gt; at the begining. */
 ...</pre></li>
     </ul>
 
@@ -777,21 +770,21 @@ text = text.replace(/(\n\r)|(\n)/g, &#x27;&#x3c;br&#x3e;&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">error = function (error) {
     logger.error(error);
-    _this.emit(&#x27;error&#x27;, _session, error);
+    _this.emit('error', _session, error);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-var logger = require(&#x27;./lib/logger&#x27;);
-var mailin = require(&#x27;./index&#x27;);
-var program = require(&#x27;commander&#x27;);
+var logger = require('./lib/logger');
+var mailin = require('./index');
+var program = require('commander');
 
 function collectOptions(keyValue, options) {
-    if (!keyValue || keyValue.indexOf(&#x27;:&#x27;) &#x3c; 0) {
-        logger.<span class="apidocCodeKeywordSpan">error</span>(&#x27;Ignoring option &#x27;  + keyValue);
+    if (!keyValue || keyValue.indexOf(':') &lt; 0) {
+        logger.<span class="apidocCodeKeywordSpan">error</span>('Ignoring option '  + keyValue);
         return options;
     }
     options = options || {};
-    var split = keyValue.split(&#x27;:&#x27;);
+    var split = keyValue.split(':');
     options[split[0]] = split[1];
     return options;
 }
@@ -816,16 +809,16 @@ function collectOptions(keyValue, options) {
     <li>example usage<pre class="apidocCodePre">...
 var attachmentNamesAndContent = {};
 finalizedMessage.attachments.forEach(function (attachment) {
-    attachmentNamesAndContent[attachment.generatedFileName] = (attachment.content || Buffer(&#x27;&#x27;)).toString(&#x27;base64
-&#x27;);
+    attachmentNamesAndContent[attachment.generatedFileName] = (attachment.content || Buffer('')).toString('base64
+');
     delete attachment.content;
 });
-logger.profile(&#x27;Convert attachments to strings&#x27;);
+logger.profile('Convert attachments to strings');
 
 logger.<span class="apidocCodeKeywordSpan">debug</span>(finalizedMessage);
 
 var req = request.post(configuration.webhook);
-req.field(&#x27;mailinMsg&#x27;, JSON.stringify(finalizedMessage));
+req.field('mailinMsg', JSON.stringify(finalizedMessage));
 
 _.forEach(attachmentNamesAndContent, function (content, name) {
     req.field(name, content);
@@ -845,17 +838,17 @@ _.forEach(attachmentNamesAndContent, function (content, name) {
     <li>description and source-code<pre class="apidocCodePre">error = function () {}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-var logger = require(&#x27;./lib/logger&#x27;);
-var mailin = require(&#x27;./index&#x27;);
-var program = require(&#x27;commander&#x27;);
+var logger = require('./lib/logger');
+var mailin = require('./index');
+var program = require('commander');
 
 function collectOptions(keyValue, options) {
-    if (!keyValue || keyValue.indexOf(&#x27;:&#x27;) &#x3c; 0) {
-        logger.<span class="apidocCodeKeywordSpan">error</span>(&#x27;Ignoring option &#x27;  + keyValue);
+    if (!keyValue || keyValue.indexOf(':') &lt; 0) {
+        logger.<span class="apidocCodeKeywordSpan">error</span>('Ignoring option '  + keyValue);
         return options;
     }
     options = options || {};
-    var split = keyValue.split(&#x27;:&#x27;);
+    var split = keyValue.split(':');
     options[split[0]] = split[1];
     return options;
 }
@@ -873,22 +866,22 @@ function collectOptions(keyValue, options) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">info = function () {}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.option(&#x27;--smtp [value]&#x27;, &#x27;smtp options split with :, check https://github.com/andris9/smtp-server/tree/v1.4.0&#x27
+.option('--smtp [value]', 'smtp options split with :, check https://github.com/andris9/smtp-server/tree/v1.4.0'
 ;, collectOptions, {});
 
 /* Hack the argv object so that commander thinks that this script is called
- * &#x27;mailin&#x27;. The help info will look nicer. */
-process.argv[1] = &#x27;mailin&#x27;;
+ * 'mailin'. The help info will look nicer. */
+process.argv[1] = 'mailin';
 program.parse(process.argv);
 
-logger.<span class="apidocCodeKeywordSpan">info</span>(&#x27;Mailin v&#x27; + pkg.version);
+logger.<span class="apidocCodeKeywordSpan">info</span>('Mailin v' + pkg.version);
 
 var smtpOptions = program.smtp;
 smtpOptions.disabledCommands = program.disabledSmtpCommands;
 
 mailin.start({
 port: program.port || 25,
-host: program.host || &#x27;0.0.0.0&#x27;,
+host: program.host || '0.0.0.0',
 ...</pre></li>
     </ul>
 
@@ -911,8 +904,8 @@ host: program.host || &#x27;0.0.0.0&#x27;,
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function onAuth(auth, session, streamCallback) {
-    if (_this.emit(&#x27;authorizeUser&#x27;, session, auth.username, auth.password, streamCallback)) {
-        streamCallback(new Error(&#x27;Unauthorized user&#x27;));
+    if (_this.emit('authorizeUser', session, auth.username, auth.password, streamCallback)) {
+        streamCallback(new Error('Unauthorized user'));
     }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -934,29 +927,29 @@ host: program.host || &#x27;0.0.0.0&#x27;,
     var mailPath = path.join(configuration.tmp, connection.id);
     connection.mailPath = mailPath;
 
-    _this.emit(&#x27;startData&#x27;, connection);
-    logger.verbose(&#x27;Connection id &#x27; + connection.id);
-    logger.info(connection.id + &#x27; Receiving message from &#x27; + connection.envelope.mailFrom.address);
+    _this.emit('startData', connection);
+    logger.verbose('Connection id ' + connection.id);
+    logger.info(connection.id + ' Receiving message from ' + connection.envelope.mailFrom.address);
 
-    _this.emit(&#x27;startMessage&#x27;, connection);
+    _this.emit('startMessage', connection);
 
     stream.pipe(fs.createWriteStream(mailPath));
 
-    stream.on(&#x27;data&#x27;, function (chunk) {
-        _this.emit(&#x27;data&#x27;, connection, chunk);
+    stream.on('data', function (chunk) {
+        _this.emit('data', connection, chunk);
     });
 
-    stream.on(&#x27;end&#x27;, function () {
+    stream.on('end', function () {
         dataReady(connection);
         callback();
     });
 
-    stream.on(&#x27;close&#x27;, function () {
-        _this.emit(&#x27;close&#x27;, connection);
+    stream.on('close', function () {
+        _this.emit('close', connection);
     });
 
-    stream.on(&#x27;error&#x27;, function (error) {
-        _this.emit(&#x27;error&#x27;, connection, error);
+    stream.on('error', function (error) {
+        _this.emit('error', connection, error);
     });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -972,11 +965,11 @@ host: program.host || &#x27;0.0.0.0&#x27;,
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function onMailFrom(address, session, streamCallback) {
-    _this.emit(&#x27;validateSender&#x27;, session, address.address, streamCallback);
+    _this.emit('validateSender', session, address.address, streamCallback);
     var ack = function (err) {
         streamCallback(err);
     };
-    validateAddress(&#x27;sender&#x27;, address.address, session.envelope)
+    validateAddress('sender', address.address, session.envelope)
         .then(ack)
         .catch(ack);
 }</pre></li>
@@ -996,8 +989,8 @@ host: program.host || &#x27;0.0.0.0&#x27;,
     var ack = function (err) {
         streamCallback(err);
     };
-    _this.emit(&#x27;validateRecipient&#x27;, session, address.address, callback);
-    validateAddress(&#x27;recipient&#x27;, address.address, session.envelope)
+    _this.emit('validateRecipient', session, address.address, callback);
+    validateAddress('recipient', address.address, session.envelope)
         .then(ack)
         .catch(ack);
 }</pre></li>
@@ -1073,16 +1066,16 @@ if (err.stack) {
     <li>example usage<pre class="apidocCodePre">...
 var attachmentNamesAndContent = {};
 finalizedMessage.attachments.forEach(function (attachment) {
-    attachmentNamesAndContent[attachment.generatedFileName] = (attachment.content || Buffer(&#x27;&#x27;)).toString(&#x27;base64
-&#x27;);
+    attachmentNamesAndContent[attachment.generatedFileName] = (attachment.content || Buffer('')).toString('base64
+');
     delete attachment.content;
 });
-logger.profile(&#x27;Convert attachments to strings&#x27;);
+logger.profile('Convert attachments to strings');
 
 logger.<span class="apidocCodeKeywordSpan">debug</span>(finalizedMessage);
 
 var req = request.post(configuration.webhook);
-req.field(&#x27;mailinMsg&#x27;, JSON.stringify(finalizedMessage));
+req.field('mailinMsg', JSON.stringify(finalizedMessage));
 
 _.forEach(attachmentNamesAndContent, function (content, name) {
     req.field(name, content);
@@ -1112,17 +1105,17 @@ _.forEach(attachmentNamesAndContent, function (content, name) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-var logger = require(&#x27;./lib/logger&#x27;);
-var mailin = require(&#x27;./index&#x27;);
-var program = require(&#x27;commander&#x27;);
+var logger = require('./lib/logger');
+var mailin = require('./index');
+var program = require('commander');
 
 function collectOptions(keyValue, options) {
-    if (!keyValue || keyValue.indexOf(&#x27;:&#x27;) &#x3c; 0) {
-        logger.<span class="apidocCodeKeywordSpan">error</span>(&#x27;Ignoring option &#x27;  + keyValue);
+    if (!keyValue || keyValue.indexOf(':') &lt; 0) {
+        logger.<span class="apidocCodeKeywordSpan">error</span>('Ignoring option '  + keyValue);
         return options;
     }
     options = options || {};
-    var split = keyValue.split(&#x27;:&#x27;);
+    var split = keyValue.split(':');
     options[split[0]] = split[1];
     return options;
 }
@@ -1144,22 +1137,22 @@ function collectOptions(keyValue, options) {
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-.option(&#x27;--smtp [value]&#x27;, &#x27;smtp options split with :, check https://github.com/andris9/smtp-server/tree/v1.4.0&#x27
+.option('--smtp [value]', 'smtp options split with :, check https://github.com/andris9/smtp-server/tree/v1.4.0'
 ;, collectOptions, {});
 
 /* Hack the argv object so that commander thinks that this script is called
- * &#x27;mailin&#x27;. The help info will look nicer. */
-process.argv[1] = &#x27;mailin&#x27;;
+ * 'mailin'. The help info will look nicer. */
+process.argv[1] = 'mailin';
 program.parse(process.argv);
 
-logger.<span class="apidocCodeKeywordSpan">info</span>(&#x27;Mailin v&#x27; + pkg.version);
+logger.<span class="apidocCodeKeywordSpan">info</span>('Mailin v' + pkg.version);
 
 var smtpOptions = program.smtp;
 smtpOptions.disabledCommands = program.disabledSmtpCommands;
 
 mailin.start({
 port: program.port || 25,
-host: program.host || &#x27;0.0.0.0&#x27;,
+host: program.host || '0.0.0.0',
 ...</pre></li>
     </ul>
 
@@ -1173,13 +1166,13 @@ host: program.host || &#x27;0.0.0.0&#x27;,
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">setLevel = function (level) {
-    if ([&#x27;silly&#x27;, &#x27;verbose&#x27;, &#x27;debug&#x27;, &#x27;info&#x27;, &#x27;warn&#x27;, &#x27;error&#x27;].indexOf(level) === -1) {
-        logger.error(&#x27;Unable to set logging level to unknown level &#x22;&#x27; + level + &#x27;&#x22;.&#x27;);
+    if (['silly', 'verbose', 'debug', 'info', 'warn', 'error'].indexOf(level) === -1) {
+        logger.error('Unable to set logging level to unknown level "' + level + '".');
     } else {
 <span class="apidocCodeCommentSpan">        /* Verbose and debug have not exactly the same semantic in Mailin and
          * Winston, so handle that. */
-</span>        if (logger.transports.console.level === &#x27;verbose&#x27; &#x26;&#x26;
-            level === &#x27;debug&#x27;) {
+</span>        if (logger.transports.console.level === 'verbose' &amp;&amp;
+            level === 'debug') {
             return;
         }
 
@@ -1200,8 +1193,8 @@ if (configuration.logLevel) {
 }
 
 if (configuration.verbose) {
-    logger.setLevel(&#x27;verbose&#x27;);
-    logger.info(&#x27;Log level set to verbose.&#x27;);
+    logger.setLevel('verbose');
+    logger.info('Log level set to verbose.');
 }
 ...</pre></li>
     </ul>
@@ -1226,7 +1219,7 @@ if (configuration.verbose) {
     <li>example usage<pre class="apidocCodePre">...
 /* Create tmp dir if necessary. */
 if (!fs.existsSync(configuration.tmp)) {
-    shell.mkdir(&#x27;-p&#x27;, configuration.tmp);
+    shell.mkdir('-p', configuration.tmp);
 }
 
 /* Log to a file if necessary. */
@@ -1280,11 +1273,11 @@ if (configuration.disableDkim) {
     return Promise.resolve(false);
 }
 
-logger.<span class="apidocCodeKeywordSpan">verbose</span>(connection.id + &#x27; Validating dkim.&#x27;);
+logger.<span class="apidocCodeKeywordSpan">verbose</span>(connection.id + ' Validating dkim.');
 
 return mailUtilities.validateDkimAsync(rawEmail)
     .catch(function (err) {
-        logger.error(connection.id + &#x27; Unable to validate dkim. Consider dkim as failed.&#x27;);
+        logger.error(connection.id + ' Unable to validate dkim. Consider dkim as failed.');
         logger.error(err);
         return false;
     });
@@ -1306,19 +1299,19 @@ return mailUtilities.validateDkimAsync(rawEmail)
   target.log.apply(target, args);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-logger.error(&#x27;Please report this to &#x27; + pkg.bugs.url);
+logger.error('Please report this to ' + pkg.bugs.url);
 logger.error(err);
 logger.info();
 logger.info();
 });
 
-mailinProcess.on(&#x27;restart&#x27;, function () {
-logger.<span class="apidocCodeKeywordSpan">warn</span>(&#x27;It is likely that an error caused Mailin to crash.&#x27;);
-logger.warn(&#x27;Please report this to &#x27; + pkg.bugs.url);
-logger.warn(&#x27;Mailin restarted.&#x27;);
+mailinProcess.on('restart', function () {
+logger.<span class="apidocCodeKeywordSpan">warn</span>('It is likely that an error caused Mailin to crash.');
+logger.warn('Please report this to ' + pkg.bugs.url);
+logger.warn('Mailin restarted.');
 
 ++restartCount;
-logger.warn(&#x27;Restart count: &#x27; + restartCount);
+logger.warn('Restart count: ' + restartCount);
 
 logger.info();
 ...</pre></li>
@@ -1370,7 +1363,7 @@ logger.info();
     spamc.report(rawEmail, function (err, result) {
         logger.verbose(result);
         if (err) logger.error(err);
-        if (err) return callback(new Error(&#x27;Unable to compute spam score.&#x27;));
+        if (err) return callback(new Error('Unable to compute spam score.'));
         callback(null, result.spamScore);
     });
 }</pre></li>
@@ -1387,13 +1380,13 @@ logger.info();
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">computeSpamScoreAsync = function (_arg0, _arg1, _arg2) {
-    &#x27;use strict&#x27;;
+    'use strict';
     var len = arguments.length;
     var promise = new Promise(INTERNAL);
     promise._captureStackTrace();
     var nodeback = nodebackForPromise(promise);
     var ret;
-    var callback = tryCatch(this != null ? this[&#x27;computeSpamScore&#x27;] : fn);
+    var callback = tryCatch(this != null ? this['computeSpamScore'] : fn);
     switch(len) {
         case 1:ret = callback.call(this, _arg0, nodeback); break;
 case 0:ret = callback.call(this, nodeback); break;
@@ -1403,7 +1396,7 @@ case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
 default:
     var args = new Array(len + 1);
     var i = 0;
-    for (var i = 0; i &#x3c; len; ++i) {
+    for (var i = 0; i &lt; len; ++i) {
        args[i] = arguments[i];
     }
     args[i] = nodeback;
@@ -1427,7 +1420,7 @@ function computeSpamScore(connection, rawEmail) {
 
     return mailUtilities.<span class="apidocCodeKeywordSpan">computeSpamScoreAsync</span>(rawEmail)
         .catch(function (err) {
-            logger.error(connection.id + &#x27; Unable to compute spam score. Set spam score to 0.&#x27;);
+            logger.error(connection.id + ' Unable to compute spam score. Set spam score to 0.');
             logger.error(err);
             return 0.0;
         });
@@ -1449,15 +1442,15 @@ function computeSpamScore(connection, rawEmail) {
         return callback(null, false);
     }
 
-    var verifyDkimPath = path.join(__dirname, &#x27;../python/verifydkim.py&#x27;);
-    var verifyDkim = child_process.spawn(&#x27;python&#x27;, [verifyDkimPath]);
+    var verifyDkimPath = path.join(__dirname, '../python/verifydkim.py');
+    var verifyDkim = child_process.spawn('python', [verifyDkimPath]);
 
-    verifyDkim.stdout.on(&#x27;data&#x27;, function (data) {
+    verifyDkim.stdout.on('data', function (data) {
         logger.verbose(data.toString());
     });
 
-    verifyDkim.on(&#x27;close&#x27;, function (code) {
-        logger.verbose(&#x27;closed with return code &#x27; + code);
+    verifyDkim.on('close', function (code) {
+        logger.verbose('closed with return code ' + code);
 <span class="apidocCodeCommentSpan">        /* Convert return code to appropriate boolean. */
 </span>        return callback(null, !!!code);
     });
@@ -1478,13 +1471,13 @@ function computeSpamScore(connection, rawEmail) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">validateDkimAsync = function (_arg0, _arg1, _arg2) {
-    &#x27;use strict&#x27;;
+    'use strict';
     var len = arguments.length;
     var promise = new Promise(INTERNAL);
     promise._captureStackTrace();
     var nodeback = nodebackForPromise(promise);
     var ret;
-    var callback = tryCatch(this != null ? this[&#x27;validateDkim&#x27;] : fn);
+    var callback = tryCatch(this != null ? this['validateDkim'] : fn);
     switch(len) {
         case 1:ret = callback.call(this, _arg0, nodeback); break;
 case 0:ret = callback.call(this, nodeback); break;
@@ -1494,7 +1487,7 @@ case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
 default:
     var args = new Array(len + 1);
     var i = 0;
-    for (var i = 0; i &#x3c; len; ++i) {
+    for (var i = 0; i &lt; len; ++i) {
        args[i] = arguments[i];
     }
     args[i] = nodeback;
@@ -1514,11 +1507,11 @@ function validateDkim(connection, rawEmail) {
         return Promise.resolve(false);
     }
 
-    logger.verbose(connection.id + &#x27; Validating dkim.&#x27;);
+    logger.verbose(connection.id + ' Validating dkim.');
 
     return mailUtilities.<span class="apidocCodeKeywordSpan">validateDkimAsync</span>(rawEmail)
         .catch(function (err) {
-            logger.error(connection.id + &#x27; Unable to validate dkim. Consider dkim as failed.&#x27;);
+            logger.error(connection.id + ' Unable to validate dkim. Consider dkim as failed.');
             logger.error(err);
             return false;
         });
@@ -1540,8 +1533,8 @@ function validateDkim(connection, rawEmail) {
         return callback(null, false);
     }
 
-    var verifySpfPath = path.join(__dirname, &#x27;../python/verifyspf.py&#x27;);
-    var cmd = &#x27;python &#x27; + verifySpfPath + &#x27; &#x27; + ip + &#x27; &#x27; + address + &#x27; &#x27; + host;
+    var verifySpfPath = path.join(__dirname, '../python/verifyspf.py');
+    var cmd = 'python ' + verifySpfPath + ' ' + ip + ' ' + address + ' ' + host;
     child_process.exec(cmd, function (err, stdout) {
         logger.verbose(stdout);
         var code = 0;
@@ -1549,7 +1542,7 @@ function validateDkim(connection, rawEmail) {
             code = err.code;
         }
 
-        logger.verbose(&#x27;closed with return code &#x27; + code);
+        logger.verbose('closed with return code ' + code);
 
 <span class="apidocCodeCommentSpan">        /* Convert return code to appropriate boolean. */
 </span>        return callback(null, !!!code);
@@ -1568,13 +1561,13 @@ function validateDkim(connection, rawEmail) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">validateSpfAsync = function (_arg0, _arg1, _arg2) {
-    &#x27;use strict&#x27;;
+    'use strict';
     var len = arguments.length;
     var promise = new Promise(INTERNAL);
     promise._captureStackTrace();
     var nodeback = nodebackForPromise(promise);
     var ret;
-    var callback = tryCatch(this != null ? this[&#x27;validateSpf&#x27;] : fn);
+    var callback = tryCatch(this != null ? this['validateSpf'] : fn);
     switch(len) {
         case 3:ret = callback.call(this, _arg0, _arg1, _arg2, nodeback); break;
 case 2:ret = callback.call(this, _arg0, _arg1, nodeback); break;
@@ -1584,7 +1577,7 @@ case 0:ret = callback.call(this, nodeback); break;
 default:
     var args = new Array(len + 1);
     var i = 0;
-    for (var i = 0; i &#x3c; len; ++i) {
+    for (var i = 0; i &lt; len; ++i) {
        args[i] = arguments[i];
     }
     args[i] = nodeback;
@@ -1604,12 +1597,12 @@ function validateSpf(connection) {
         return Promise.resolve(false);
     }
 
-    logger.verbose(connection.id + &#x27; Validating spf.&#x27;);
+    logger.verbose(connection.id + ' Validating spf.');
     /* Get ip and host. */
     return mailUtilities.<span class="apidocCodeKeywordSpan">validateSpfAsync</span>(connection.remoteAddress, connection.from,
 connection.clientHostname)
         .catch(function (err) {
-            logger.error(connection.id + &#x27; Unable to validate spf. Consider spf as failed.&#x27;);
+            logger.error(connection.id + ' Unable to validate spf. Consider spf as failed.');
             logger.error(err);
             return false;
         });
@@ -1626,3 +1619,4 @@ connection.clientHostname)
     ]
 </div>
 </div>
+</body></html>
